@@ -1,8 +1,11 @@
 import EventSummary from "@/components/event-detail/event-summary";
 import EventLogistics from "@/components/event-detail/event-logistics";
 import EventContent from "@/components/event-detail/event-content";
-import { getEventById } from "../../helpers/api-utils";
-import { useRouter } from "next/router";
+import {
+  getEventById,
+  getAllEvent,
+  getFeaturedEvents,
+} from "../../helpers/api-utils";
 import ErrorAlert from "@/components/ui/error-alert";
 
 function EventDetailPage(props) {
@@ -10,9 +13,9 @@ function EventDetailPage(props) {
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <div className="center">
+        <p>Loading...</p>
+      </div>
     );
   }
 
@@ -39,11 +42,18 @@ export async function getStaticProps(context) {
     props: {
       selectedEvent: event,
     },
+    revalidate: 30,
   };
 }
 
 export async function getStaticPaths() {
-  return {};
+  const events = await getFeaturedEvents();
+
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+  return {
+    paths: paths,
+    fallback: "blocking",
+  };
 }
 
 export default EventDetailPage;
