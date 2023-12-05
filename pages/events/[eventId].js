@@ -7,6 +7,7 @@ import {
   getFeaturedEvents,
 } from "../../helpers/api-utils";
 import ErrorAlert from "@/components/ui/error-alert";
+import Comments from "@/components/input/comments";
 
 function EventDetailPage(props) {
   const event = props.selectedEvent;
@@ -31,6 +32,7 @@ function EventDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 }

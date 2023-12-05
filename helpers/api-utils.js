@@ -3,12 +3,9 @@ export async function getAllEvents() {
     "https://events-97a53-default-rtdb.firebaseio.com/events.json"
   );
   const data = await response.json();
-  console.log("this is data", data);
-
   const events = [];
 
   for (const key in data) {
-    console.log("this is key", key);
     events.push({
       id: key,
       ...data[key],

@@ -1,8 +1,8 @@
 import EventList from "@/components/events/event-list";
-import EventsSearch from "@/components/events/events-search";
 import { getFeaturedEvents } from "../helpers/api-utils";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import NewsletterRegistration from "@/components/input/newsletter-registration";
 
 export default function HomePage(props) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function HomePage(props) {
         <title>events-project</title>
       </Head>
       <main>
-        {/* <EventsSearch onSearch={findEventsHandler} /> */}
+        <NewsletterRegistration />
         <EventList items={props.events} />
       </main>
     </>
@@ -27,7 +27,7 @@ export default function HomePage(props) {
 
 export async function getStaticProps() {
   const featuredEvents = await getFeaturedEvents();
-  console.log("this is featured events", featuredEvents);
+
   return {
     props: {
       events: featuredEvents,
