@@ -9,9 +9,9 @@ export async function connectDatabase() {
 
 export async function insertDocument(client, collection, document) {
   const db = client.db();
-  const result = await db
-    .collection("collection")
-    .insertOne({ email: userEmail });
+
+  const result = await db.collection(collection).insertOne(document);
+
   return result;
 }
 
