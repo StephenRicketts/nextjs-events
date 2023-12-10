@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb";
 
 export async function connectDatabase() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://stephenricketts:1f1lMAqwvgNHglRR@cluster0.iqchcry.mongodb.net/newsletter?retryWrites=true&w=majority"
-  );
+  const dbKey = process.env.DB_KEY;
+  const client = await MongoClient.connect(dbKey);
   return client;
 }
 

@@ -3,23 +3,8 @@ import ResultsTitle from "@/components/events/results-title";
 import Button from "@/components/ui/button";
 import ErrorAlert from "@/components/ui/error-alert";
 import { getFilteredEvents } from "../../helpers/api-utils";
-import { useRouter } from "next/router";
 
 function FilteredEventsPage(props) {
-  const router = useRouter();
-
-  // const filterData = router.query.slug;
-
-  // if (!filterData) {
-  //   return <p className="center">Loading...</p>;
-  // }
-
-  // const filteredYear = filterData[0];
-  // const filteredMonth = filterData[1];
-
-  // const numYear = +filteredYear;
-  // const numMonth = +filteredMonth;
-
   if (props.hasError) {
     return (
       <>
